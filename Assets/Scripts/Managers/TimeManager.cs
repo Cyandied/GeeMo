@@ -112,6 +112,7 @@ public struct DateTime {
     }
 
     public void AdvanceHour(int advanceByHours){
+        Debug.Log(GMOPlayer.PlayerToString());
         if(hour + advanceByHours >= 24){
             hour = (hour + advanceByHours)%24;
             AdvanceDay();

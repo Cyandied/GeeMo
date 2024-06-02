@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fruit : MonoBehaviour
+public class Fruit : MonoBehaviour,HoldableObject
 {
     public Seed parentSeed;
     
@@ -37,6 +37,10 @@ public class Fruit : MonoBehaviour
 
 
 
+    public ObjectTypes getType()
+        {
+            return ObjectTypes.FRUIT;
+        }
 
 
     // Start is called before the first frame update

@@ -11,6 +11,7 @@ public class PlantBed : MonoBehaviour
     public List<GameObject> plantSpots;
     [SerializeField]
     GameObject plantSpontPrefab;
+    [SerializeField]
     
 
     // Start is called before the first frame update
@@ -28,8 +29,7 @@ public class PlantBed : MonoBehaviour
         float yBefore = plantSpots[0].GetComponent<RectTransform>().position.y;
         for(int num = 0;num < plantSpots.Count;num++){
             GameObject plantSpot = plantSpots[num];
-            float rand = UnityEngine.Random.Range(0,4);
-            plantSpot.GetComponent<PlantSpot>().setBaseState((BaseStates)rand);
+            plantSpot.GetComponent<PlantSpot>().setBaseState(BaseStates.DEFAULT);
             float x = position*spotWidth + (position+1)*spacing;
             float y = math.floor(num/4)*spotWidth+(math.floor(num/4)+1)*spacing;
             plantSpot.GetComponent<RectTransform>().position = new Vector2(xBefore+x,yBefore+y);
