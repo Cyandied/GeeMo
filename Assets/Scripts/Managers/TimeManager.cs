@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class TimeManager : MonoBehaviour
 {
     public static TimeManager Instance;
+
     [Header("Date and Time settings")]
     [Range(1,20)]
     public int date;
@@ -25,6 +26,14 @@ public class TimeManager : MonoBehaviour
     public float TimePerTick = 1;
     private float currentTimePerTick = 0;
 
+    [Header("Events")]
+    public UnityEvent<Days> NewDay;
+    public UnityEvent<Seasons> NewSeason;
+    public UnityEvent IsMorning;
+    public UnityEvent IsNoon;
+    public UnityEvent IsEvening;
+    public UnityEvent IsNight;
+
     public static UnityAction<DateTime> OnDateTimeChanged;
 
     private void Awake(){
@@ -34,7 +43,7 @@ public class TimeManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        DateTime = new DateTime(date, season,year,hour,minute*5);
+        DateTime = new DateTime(date, season,year,hour,minute*5,Instance);
     }
 
     void Start(){
@@ -59,11 +68,14 @@ public class TimeManager : MonoBehaviour
         OnDateTimeChanged?.Invoke(DateTime);
     }
 
+    public TimeManager GetInstance(){
+        return Instance;
+    }
+
 }
 
 [System.Serializable]
 public struct DateTime {
-
     // Fields
     private Days day;
     private int date;
@@ -84,8 +96,10 @@ public struct DateTime {
     public int TotalDaysPassed => totalDaysPassed;
     public int TotalWeeksPassed => totalWeeksPassed;
 
+    private TimeManager tm;
+
     // Constructors
-    public DateTime(int date, int season, int year, int hour, int minute){
+    public DateTime(int date, int season, int year, int hour, int minute, TimeManager tm){
         this.day = (Days)(date%5);
         if(day == 0) day = (Days)5;
         this.date = date;
@@ -97,11 +111,12 @@ public struct DateTime {
 
         totalDaysPassed = date + (int)this.season * (5*4) + this.year * (5*4*4);
         totalWeeksPassed = 1 + totalDaysPassed/7;
+
+        this.tm = tm.GetInstance();
     }
 
     // Time advancement
     public void AdvanceMinutes(int advanceByMinutes){
-        // Debug.Log("The time and date is: "+hour+":"+minute+"\t"+day.ToString()+" : "+date+"/"+season.ToString()+"/"+year);
         if(minute + advanceByMinutes >= 60){
             minute = (minute + advanceByMinutes)%60;
             AdvanceHour(1);
@@ -113,12 +128,26 @@ public struct DateTime {
 
     public void AdvanceHour(int advanceByHours){
         Debug.Log(GMOPlayer.PlayerToString());
+        Debug.Log("The time and date is: "+hour+":"+minute+"\t"+day.ToString()+" : "+date+"/"+season.ToString()+"/"+year);
         if(hour + advanceByHours >= 24){
             hour = (hour + advanceByHours)%24;
             AdvanceDay();
         }
         else {
             hour += advanceByHours;
+        }
+
+        if(isMorning()){
+            tm.IsMorning?.Invoke();
+        }
+        else if(isNoon()){
+            tm.IsNoon?.Invoke();
+        }
+        else if(isEvening()){
+            tm.IsEvening?.Invoke();
+        }
+        else if(isNight()){
+            tm.IsNight?.Invoke();
         }
     }
 
@@ -139,6 +168,8 @@ public struct DateTime {
         }
 
         totalDaysPassed++;
+
+        tm.NewDay?.Invoke(day);
     }
 
     public void AdvanceSeason(){
@@ -147,6 +178,8 @@ public struct DateTime {
             AdvanceYear();
         }
         else season++;
+
+        tm.NewSeason?.Invoke(season);
     }
 
     public void AdvanceYear(){

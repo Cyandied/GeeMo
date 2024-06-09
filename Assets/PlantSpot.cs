@@ -11,23 +11,25 @@ public class PlantSpot : MonoBehaviour
     Boolean active;
     Boolean occupied;
     public BaseStates state;
-    public GameObject plantedSeed;
-    public GameObject plant;
+    public SeedSO plantedSeed;
+    public PlantSO plant;
     [SerializeField]
     GameObject highlight;
-    // Start is called before the first frame update
+    [SerializeField]
+    GameObject display;
+
     void Start()
     {
-        
+        if(plantedSeed == null && plant == null){
+            display.SetActive(false);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
+    public void OrderDisplay(int order){
+        display.GetComponent<SpriteRenderer>().sortingOrder = order;
     }
 
-    public void setBaseState(BaseStates state){
+    public void SetBaseState(BaseStates state){
         SpriteRenderer renderer = GetComponent<SpriteRenderer>();
         this.state = state;
         if(state == BaseStates.DISABLED){
@@ -64,7 +66,7 @@ public class PlantSpot : MonoBehaviour
             highlight.SetActive(true);
         }
         if(Input.GetMouseButton(0)){
-            reactToPlayerInput();
+            ReactToPlayerInput();
         }
     }
 
@@ -72,21 +74,54 @@ public class PlantSpot : MonoBehaviour
             highlight.SetActive(false);
     }
 
-    void reactToPlayerInput(){
+    void ReactToPlayerInput(){
         if(GMOPlayer.holdState == Holding.WATER){
-            setBaseState(BaseStates.WATERED);
+            WaterPlantSpot();
         }
         else if(GMOPlayer.holdState == Holding.OBJECT){
             if(GMOPlayer.getTypeObject() == ObjectTypes.SEED && !occupied){
-                plantSeed(GMOPlayer.getObjectHolding());
+                PlantSeed(GMOPlayer.getObjectHolding());
                 GMOPlayer.useHolding();
                 occupied = true;
             }
         }
     }
 
-    void plantSeed(GameObject seed){
-        plantedSeed = seed.GetComponent<Seed>().plantInSpot(gameObject);
+    void PlantSeed(GameObject seed){
+        plantedSeed = seed.GetComponent<Seed>().PlantInSpot(display);
+        display.SetActive(true);
+    }
+
+    void WaterPlantSpot(){
+        SetBaseState(BaseStates.WATERED);
+        if(plant == null){
+            plant = plantedSeed.Sprout();
+            display.GetComponent<SpriteRenderer>().sprite = plant.CurrentSprite();
+        }
+    }
+
+    public void NewDay(){
+        Grow();
+        if(state != BaseStates.DISABLED){
+            SetBaseState(BaseStates.DEFAULT);
+        }
+    }
+
+    public void Grow(){
+        if(plantedSeed == null || state == BaseStates.DISABLED){
+            return;
+        }
+        if(plant == null && state == BaseStates.DEFAULT){
+            plantedSeed = null;
+            display.SetActive(false);
+            occupied = false;
+            return;
+        }
+        if(state == BaseStates.DEFAULT || plant == null){
+            return;
+        }
+        plant.Grow();
+        display.GetComponent<SpriteRenderer>().sprite = plant.CurrentSprite();
     }
 
 }

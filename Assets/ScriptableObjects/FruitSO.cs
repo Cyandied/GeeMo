@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Fruit : MonoBehaviour,HoldableObject
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/FruitSO", order = 0)]
+public class FruitSO : ScriptableObject
 {
-    public Seed parentSeed;
+    SeedSO parentSeed;
     
     [Header("Fruit information")]
     public string type;
@@ -29,32 +29,15 @@ public class Fruit : MonoBehaviour,HoldableObject
     public List<Trait> traits;
 
     [Header("Visuals")]
-    public string baseGraphicSource;
-    public List<string> patterns;
+    public Sprite baseGraphicSource;
+    public List<Sprite> patterns;
 
     BaseGraphicSource bgs;
     List<Pattern> ps;
 
-
-
-    public ObjectTypes getType()
-        {
-            return ObjectTypes.FRUIT;
-        }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        bgs = new BaseGraphicSource(baseGraphicSource);
-        foreach(string pattern in patterns){
-            ps.Add(new Pattern(pattern));
-        }
+    public FruitSO InstantiateFruit(SeedSO seed){
+        parentSeed = seed;
+        return Instantiate(this);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

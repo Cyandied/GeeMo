@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43705581cee36cd4b84329cbf156bcab, type: 3}
+  m_Name: Test
+  m_EditorClassIdentifier: 
+  type: 
+  variation: 0
+  production: 1
+  growthRate: 1
+  maxGrowthStage: 5
+  canGrowDuring: 
+  growthStage: 0
+  daysSincePlanted: 0
+  isWithFruit: 0
+  isFlowering: 0
+  isWatered: 0
+  baseGraphicSources:
+  - {fileID: 21300000, guid: 0a2e0a222a8e5424d918ffda4c23b32e, type: 3}
+  - {fileID: 21300000, guid: 66c89c12cc4f945438616eceef1870df, type: 3}
+  - {fileID: 21300000, guid: a13d6f3082f614c4fa9625ecdcb6b0fc, type: 3}
+  - {fileID: 21300000, guid: d6fd78545f7ce5640ba56d4c66ee22d9, type: 3}
+  - {fileID: 21300000, guid: 22f58b3a4db87414cb6c718cea1fa2de, type: 3}

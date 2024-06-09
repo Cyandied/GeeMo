@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2405612470105299759}
   - component: {fileID: 6547897066432198272}
-  - component: {fileID: 4345323487418498357}
+  - component: {fileID: 6613936312411732528}
   m_Layer: 0
   m_Name: Fruit
   m_TagString: Untagged
@@ -89,7 +89,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4345323487418498357
+--- !u!114 &6613936312411732528
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,18 +98,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9002053829860506050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8328b64989522e145aff09705b7ebaab, type: 3}
+  m_Script: {fileID: 11500000, guid: 06b4aa15064ea5e4f8d2d27bffd90da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentSeed: {fileID: 0}
-  type: 
-  gmo: 0
-  sweet: 0
-  sour: 0
-  bitter: 0
-  salty: 0
-  spicy: 0
-  umami: 0
-  size: 0
-  baseGraphicSource: 
-  patterns: []
+  fruit: {fileID: 0}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4382338028297645042}
   - component: {fileID: 7362493670364342183}
-  - component: {fileID: 2219486806145390893}
+  - component: {fileID: 5105006679096387013}
   m_Layer: 0
   m_Name: Seed
   m_TagString: Untagged
@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.98, y: 1.71}
-  m_SizeDelta: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &7362493670364342183
 SpriteRenderer:
@@ -89,7 +89,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2219486806145390893
+--- !u!114 &5105006679096387013
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,8 +98,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4008463299111190240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3187f9dfb2661b345b320adafefd967e, type: 3}
+  m_Script: {fileID: 11500000, guid: 16468926153531d42b812882b2bd50a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basePlant: {fileID: 0}
-  baseFruit: {fileID: 0}

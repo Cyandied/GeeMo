@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Stack : MonoBehaviour
 {
     public GameObject content;
+    public GameObject displayAmount;
+    public GameObject spriteDisplay;
     public ObjectTypes type;
     public int amount;
 
@@ -17,7 +21,13 @@ public class Stack : MonoBehaviour
                 return;
             }
         }
+        gameObject.transform.parent.GetComponent<StackDisplay>().TakeOutStack(gameObject);
         GMOPlayer.pickUpItem(content,amount,Holding.OBJECT,type);
+    }
+
+    void Start(){
+        spriteDisplay.GetComponent<Image>().sprite = content.GetComponent<SpriteRenderer>().sprite;
+        displayAmount.GetComponent<TextMeshProUGUI>().text = ""+amount;
     }
 
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5645060157812933446}
   - component: {fileID: 5789414369238752064}
-  - component: {fileID: 893306153624090447}
+  - component: {fileID: 6228400261317453142}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
@@ -89,7 +89,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &893306153624090447
+--- !u!114 &6228400261317453142
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,16 +98,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2132989600196830254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43705581cee36cd4b84329cbf156bcab, type: 3}
+  m_Script: {fileID: 11500000, guid: aed7a1994f6a7724fb6e1de98c07040e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentSeed: {fileID: 0}
-  baseFruit: {fileID: 0}
-  type: 
-  variation: 0
-  production: 1
-  growthRate: 1
-  growthStage: 0
-  isWithFruit: 0
-  isFlowering: 0
-  isWatered: 0
