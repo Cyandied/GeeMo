@@ -41,3 +41,8 @@ public class CurserManager : MonoBehaviour
         Player.RemoveTool();
     }
 }
+
+// Tool diktionary:
+// -1 - Empty hand
+// 0 - Watering can
+// 1 - Hoe

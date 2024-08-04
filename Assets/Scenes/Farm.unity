@@ -2487,7 +2487,8 @@ MonoBehaviour:
   interactiveMap: {fileID: 706032901}
   tillMap: {fileID: 755289953}
   signMap: {fileID: 1514793632}
-  Highlight: {fileID: 0}
+  tilledTile: {fileID: 11400000, guid: 79c314634404a4c48be66919d9d5e2a3, type: 2}
+  Highlight: {fileID: 11400000, guid: c1420bdbb93ef2e45a6e341f1245b3c4, type: 2}
   hoverTile: {fileID: 11400000, guid: f8f9ce51bef13384cb6284924b92c857, type: 2}
   signTile: {fileID: 11400000, guid: f530798e54c2bdf4d9ba43df0a22e447, type: 2}
 --- !u!1 &1514793631

@@ -7,6 +7,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Tilemap interactiveMap;
     [SerializeField] private Tilemap tillMap;
     [SerializeField] private Tilemap signMap;
+    [SerializeField] private Tile tilledTile;
     [SerializeField] private RuleTile Highlight;
     [SerializeField] private Tile hoverTile;
     [SerializeField] private Tile signTile;
@@ -19,10 +20,31 @@ public class GridManager : MonoBehaviour
     void Update()
     {
         Vector3Int mousePos = GetMousePosition();
+        MoveHighligher(mousePos);
+        if(Input.GetMouseButtonDown(0)){
+            switch(Player.WhatTool()){
+                case 0:
+                    break;
+                case 1:
+                    TillSoil(mousePos);
+                break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    void MoveHighligher(Vector3Int mousePos){
         if(!mousePos.Equals(prevoiusMousePos)){
             interactiveMap.SetTile(prevoiusMousePos,null);
             interactiveMap.SetTile(mousePos,hoverTile);
             prevoiusMousePos = mousePos;
+        }
+    }
+
+    void TillSoil(Vector3Int mousePos){
+        if(!tillMap.GetTile<Tile>(mousePos) == tilledTile){
+            tillMap.SetTile(mousePos,tilledTile);
         }
     }
 
